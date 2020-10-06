@@ -7,9 +7,17 @@ namespace AltranSIWallet.Models
 {
     public class Manager
     {
+        #region Properties
         public int Id { get; set; }
-        public string Guid { get; set; }
-        public string UserGuid { get; set; }
+        #endregion
+
+        #region ForeignKeys
+        public string UserId { get; set; }
+        #endregion
+
+        #region NavigationProperties
         public virtual ICollection<Consultant> Consultants { get; set; }
+        public virtual User User { get; set; }
+        #endregion
     }
 }

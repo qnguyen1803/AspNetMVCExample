@@ -7,8 +7,17 @@ namespace AltranSIWallet.Models
 {
     public class ProjectManager
     {
+        #region Properties
         public int Id { get; set; }
-        public string Guid { get; set; }
+        #endregion
+
+        #region ForeignKeys
+        public string UserId { get; set; }
+        #endregion
+
+        #region NavigationProperties
+        public User User { get; set; }
         public virtual ICollection<Project> Projects { get; set; }
+        #endregion
     }
 }
