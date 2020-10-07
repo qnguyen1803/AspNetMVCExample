@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AltranSIWallet.Shared.Enum;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace AltranSIWallet.Models
     {
         #region Properties
         [Required]
-        public int Level { get; set; }
+        public ELevels Level { get; set; }
         public string SkillsFile { get; set; }
         #endregion
 
