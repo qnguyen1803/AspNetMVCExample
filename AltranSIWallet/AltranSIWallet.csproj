@@ -170,18 +170,22 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202010071242259_ProfilProjectUser.cs" />
+    <Compile Include="Migrations\202010071242259_ProfilProjectUser.designer.cs">
+      <DependentUpon>202010071242259_ProfilProjectUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AltranSIWalletContext.cs" />
-    <Compile Include="Models\Consultant.cs" />
-    <Compile Include="Models\Manager.cs" />
-    <Compile Include="Models\Project.cs" />
-    <Compile Include="Models\ProjectManager.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Profil\Consultant.cs" />
+    <Compile Include="Models\Profil\Manager.cs" />
+    <Compile Include="Models\Profil\Profil.cs" />
+    <Compile Include="Models\Profil\ProjectManger.cs" />
+    <Compile Include="Models\Project\Project.cs" />
+    <Compile Include="Models\User\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -271,6 +275,11 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202010071242259_ProfilProjectUser.resx">
+      <DependentUpon>202010071242259_ProfilProjectUser.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
