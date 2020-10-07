@@ -19,10 +19,10 @@ namespace AltranSIWallet.Models
         {
         }
 
-        public System.Data.Entity.DbSet<AltranSIWallet.Models.User> Users { get; set; }
-        public System.Data.Entity.DbSet<AltranSIWallet.Models.Consultant> Consultants { get; set; }
-        public System.Data.Entity.DbSet<AltranSIWallet.Models.Manager> Managers { get; set; }
-        public System.Data.Entity.DbSet<AltranSIWallet.Models.Project> Projects { get; set; }
-        public System.Data.Entity.DbSet<AltranSIWallet.Models.ProjectManager> ProjectManagers { get; set; }
+        public DbSet<AltranSIWallet.Models.User> Users { get; set; }
+        public DbSet<AltranSIWallet.Models.Consultant> Consultants { get; set; }
+        public DbSet<AltranSIWallet.Models.Manager> Managers { get; set; }
+        public DbSet<AltranSIWallet.Models.Project> Projects { get; set; }
+        public DbSet<AltranSIWallet.Models.ProjectManager> ProjectManagers { get; set; }
     }
 }

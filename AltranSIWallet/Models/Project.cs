@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -13,7 +14,8 @@ namespace AltranSIWallet.Models
         #endregion
 
         #region ForeignKeys
-        public string ProjectManagerGuid { get; set; }
+        [Required]
+        public int ProjectManagerId { get; set; }
         #endregion
 
         #region NavigationProperties
