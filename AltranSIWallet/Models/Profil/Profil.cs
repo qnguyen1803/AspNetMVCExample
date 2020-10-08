@@ -13,7 +13,7 @@ namespace AltranSIWallet.Models
         #endregion
 
         #region ForeignKeys
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
         #endregion
 
         #region NavigationProperties

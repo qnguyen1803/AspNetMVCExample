@@ -169,9 +169,11 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ConsultantsController.cs" />
     <Compile Include="Controllers\ManagersController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\ProjectManagersController.cs" />
+    <Compile Include="Controllers\ProjectsController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -179,7 +181,16 @@
     <Compile Include="Migrations\202010071242259_ProfilProjectUser.designer.cs">
       <DependentUpon>202010071242259_ProfilProjectUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202010080910472_ManagerIdUserIdNotRequired.cs" />
+    <Compile Include="Migrations\202010080910472_ManagerIdUserIdNotRequired.designer.cs">
+      <DependentUpon>202010080910472_ManagerIdUserIdNotRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010081122211_SomePropertiesNotRequired.cs" />
+    <Compile Include="Migrations\202010081122211_SomePropertiesNotRequired.designer.cs">
+      <DependentUpon>202010081122211_SomePropertiesNotRequired.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ModelsDto\Consultant\ConsultantReturnDto.cs" />
     <Compile Include="Models\AltranSIWalletContext.cs" />
     <Compile Include="Models\Profil\Consultant.cs" />
     <Compile Include="Models\Profil\Manager.cs" />
@@ -243,7 +254,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ModelsDto\Consultant\" />
     <Folder Include="ModelsDto\Manager\" />
     <Folder Include="ModelsDto\ProjectManager\" />
     <Folder Include="ModelsDto\Project\" />
@@ -281,6 +291,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202010071242259_ProfilProjectUser.resx">
       <DependentUpon>202010071242259_ProfilProjectUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010080910472_ManagerIdUserIdNotRequired.resx">
+      <DependentUpon>202010080910472_ManagerIdUserIdNotRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010081122211_SomePropertiesNotRequired.resx">
+      <DependentUpon>202010081122211_SomePropertiesNotRequired.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -14,8 +14,7 @@ namespace AltranSIWallet.Models
         #endregion
 
         #region ForeignKeys
-        [Required]
-        public int ProjectManagerId { get; set; }
+        public int? ProjectManagerId { get; set; }
         #endregion
 
         #region NavigationProperties
