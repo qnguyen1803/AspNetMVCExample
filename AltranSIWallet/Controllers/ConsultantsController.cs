@@ -22,9 +22,19 @@ namespace AltranSIWallet.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IQueryable<Consultant> GetAll()
+        public IQueryable<ConsultantReturnDto> GetAll()
         {
-            return db.Consultants;
+            //return db.Consultants;
+            var consultants = db.Consultants.Select(c => new ConsultantReturnDto()
+            {
+                Id = c.Id,
+                Level = c.Level,
+                Manager = c.Manager,
+                Project = c.Project,
+                User = c.User,
+                SkillsFile = c.SkillsFile
+            });
+            return consultants;
         }
 
         /// <summary>
@@ -32,9 +42,16 @@ namespace AltranSIWallet.Controllers
         /// </summary>
         /// <param name="level"></param>
         /// <returns></returns>
-        public IQueryable<Consultant> GetListByLevels(ELevels level)
+        public IQueryable<ConsultantReturnDto> GetListByLevels(ELevels level)
         {
-            var consultants = db.Consultants.Where(item => item.Level == level);
+            var consultants = db.Consultants.Where(item => item.Level == level).Select(c => new ConsultantReturnDto() {
+                Id = c.Id,
+                Level = c.Level,
+                Manager = c.Manager,
+                Project = c.Project,
+                User = c.User,
+                SkillsFile = c.SkillsFile
+            });
             return consultants;
         }
 
@@ -46,10 +63,17 @@ namespace AltranSIWallet.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetById(int id)
         {
-            Consultant consultant = await db.Consultants.FindAsync(id);
-            if (consultant == null)
+            ConsultantReturnDto consultantReturnDto = await db.Consultants.Select(c => new ConsultantReturnDto() {
+                Id = c.Id,
+                Level = c.Level,
+                Manager = c.Manager,
+                Project = c.Project,
+                User = c.User,
+                SkillsFile = c.SkillsFile
+            }).FirstOrDefaultAsync(c => c.Id == id);
+            if (consultantReturnDto == null)
                 return Content(HttpStatusCode.NotFound, "Consultant not found");
-            return Ok(consultant);
+            return Ok(consultantReturnDto);
         }
 
         /// <summary>
