@@ -5,7 +5,7 @@ using System.Web;
 
 namespace AltranSIWallet.Models
 {
-    public class ProjectManger: Profil
+    public class ProjectManager: Profil
     {
         #region NavigationProperties
         public virtual ICollection<Project> Projects { get; set; }

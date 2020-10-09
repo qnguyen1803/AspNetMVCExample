@@ -91,3 +91,5 @@ C:\Users\qhnguyen\source\repos\AltranSIWallet\AltranSIWallet\obj\Debug\AltranSIW
 C:\Users\qhnguyen\source\repos\AltranSIWallet\AltranSIWallet\obj\Debug\AltranSIWallet.Migrations.SomePropertiesNotRequired.resources
 C:\Users\qhnguyen\source\repos\AltranSIWallet\AltranSIWallet\obj\Debug\AltranSIWallet.csprojAssemblyReference.cache
 C:\Users\qhnguyen\source\repos\AltranSIWallet\AltranSIWallet\bin\AltranSIWallet.xml
+C:\Users\qhnguyen\source\repos\AltranSIWallet\AltranSIWallet\obj\Debug\AltranSIWallet.Migrations.FixNameProjectManagerEntity.resources
+C:\Users\qhnguyen\source\repos\AltranSIWallet\AltranSIWallet\obj\Debug\AltranSIWallet.Migrations.FixPropertyProjectManagerInProject.resources

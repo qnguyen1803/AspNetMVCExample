@@ -18,7 +18,7 @@ namespace AltranSIWallet.Models
         #endregion
 
         #region NavigationProperties
-        public virtual Project ProjectObj { get; set; }
+        public virtual ProjectManager ProjectManager { get; set; }
         public virtual ICollection<Consultant> Consultants { get; set; }
         #endregion
     }

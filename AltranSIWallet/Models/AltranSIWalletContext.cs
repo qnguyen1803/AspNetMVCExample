@@ -24,6 +24,6 @@ namespace AltranSIWallet.Models
         public DbSet<AltranSIWallet.Models.Consultant> Consultants { get; set; }
         public DbSet<AltranSIWallet.Models.Manager> Managers { get; set; }
         public DbSet<AltranSIWallet.Models.Profil> Profils { get; set; }
-        public DbSet<AltranSIWallet.Models.ProjectManger> ProjectMangers { get; set; }
+        public DbSet<AltranSIWallet.Models.ProjectManager> ProjectManagers { get; set; }
     }
 }

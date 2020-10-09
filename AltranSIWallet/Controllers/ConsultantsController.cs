@@ -73,28 +73,27 @@ namespace AltranSIWallet.Controllers
         /// <summary>
         /// Update a consultant
         /// </summary>
-        /// <param name="id"></param>
         /// <param name="consultant"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IHttpActionResult> Update([FromUri] int id,[FromBody]Consultant consultant)
+        public async Task<IHttpActionResult> Update([FromBody]Consultant consultant)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            if (consultant.Id != id)
-                return BadRequest();
-
             db.Entry(consultant).State = EntityState.Modified;
+            db.Entry(consultant.User).State = EntityState.Modified;
             try {
                 await db.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException) {
-                int count = db.Consultants.Count(c => c.Id == id);
-                if (count == 0)
+                int countConsultant = db.Consultants.Count(c => c.Id == consultant.Id);
+                int countUser = db.Users.Count(u => u.Id == consultant.User.Id);
+                if (countConsultant == 0)
                     return Content(HttpStatusCode.NotFound, "Consultant not found");
-                else
-                    throw;
+                if (countUser == 0)
+                    return Content(HttpStatusCode.NotFound, "User not found");
+                throw;
             }
             return Ok();
         }
@@ -104,12 +103,15 @@ namespace AltranSIWallet.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [HttpDelete]
         public async Task<IHttpActionResult> Delete(int id)
         {
             Consultant consultant = await db.Consultants.FindAsync(id);
+            if (consultant == null)
+                return Content(HttpStatusCode.NotFound, "Consultant not found");
             User user = await db.Users.FindAsync(consultant.UserId);
-            if (consultant == null || user == null)
-                return Content(HttpStatusCode.NotFound, "Consultant or User not found");
+            if (user == null)
+                return Content(HttpStatusCode.NotFound, "User not found");
             db.Consultants.Remove(consultant);
             db.Users.Remove(user);
             await db.SaveChangesAsync();
