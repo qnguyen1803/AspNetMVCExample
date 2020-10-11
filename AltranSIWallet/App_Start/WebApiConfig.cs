@@ -11,8 +11,6 @@ namespace AltranSIWallet
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-            var json = config.Formatters.JsonFormatter;
-            json.SerializerSettings.Converters.Add(new StringEnumConverter());
 
             // Web API routes
             config.MapHttpAttributeRoutes();

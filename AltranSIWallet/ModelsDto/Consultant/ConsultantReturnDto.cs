@@ -17,6 +17,7 @@ namespace AltranSIWallet.ModelsDto.Consultant
 
         #region NavigationProperties
         public ELevels Level { get; set; }
+        //public string LevelDescription { get; set; }
         public string SkillsFile { get; set; }
         #endregion
 

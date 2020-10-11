@@ -1,6 +1,7 @@
 ﻿using AltranSIWallet.Models;
 using AltranSIWallet.ModelsDto.Consultant;
 using AltranSIWallet.Shared.Enum;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -16,6 +17,7 @@ namespace AltranSIWallet.Controllers
     public class ConsultantsController : ApiController
     {
         private AltranSIWalletContext db = new AltranSIWalletContext();
+        private readonly IMapper Mapper;
 
         /// <summary>
         /// Get All Consultants
@@ -34,6 +36,10 @@ namespace AltranSIWallet.Controllers
                 User = c.User,
                 SkillsFile = c.SkillsFile
             });
+            //foreach (var item in consultants)
+            //{
+            //    item.LevelDescription = EnumHelper.GetDescription(item.Level);
+            //}
             return consultants;
         }
 
@@ -63,17 +69,12 @@ namespace AltranSIWallet.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetById(int id)
         {
-            ConsultantReturnDto consultantReturnDto = await db.Consultants.Select(c => new ConsultantReturnDto() {
-                Id = c.Id,
-                Level = c.Level,
-                Manager = c.Manager,
-                Project = c.Project,
-                User = c.User,
-                SkillsFile = c.SkillsFile
-            }).FirstOrDefaultAsync(c => c.Id == id);
-            if (consultantReturnDto == null)
+            var consultant = await db.Consultants.FirstOrDefaultAsync(c => c.Id == id);
+            if (consultant == null)
                 return Content(HttpStatusCode.NotFound, "Consultant not found");
-            return Ok(consultantReturnDto);
+
+            Mapper.Map<Consultant, ConsultantReturnDto>(consultant);
+            return Ok();
         }
 
         /// <summary>
