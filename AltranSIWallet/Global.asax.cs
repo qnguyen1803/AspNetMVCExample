@@ -1,6 +1,4 @@
-﻿using AltranSIWallet.App_Start;
-using AutoMapper;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -20,13 +18,6 @@ namespace AltranSIWallet
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            var mapperConfiguration = new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile(new MappingProfile());
-            });
-            var mapper = mapperConfiguration.CreateMapper();
-            //builder.RegisterInstance(mapper).As<IMapper>();
-
         }
     }
 }

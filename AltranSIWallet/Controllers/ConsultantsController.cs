@@ -1,7 +1,7 @@
 ﻿using AltranSIWallet.Models;
 using AltranSIWallet.ModelsDto.Consultant;
+using AltranSIWallet.Repositories;
 using AltranSIWallet.Shared.Enum;
-using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -16,31 +16,25 @@ namespace AltranSIWallet.Controllers
 {
     public class ConsultantsController : ApiController
     {
-        private AltranSIWalletContext db = new AltranSIWalletContext();
-        private readonly IMapper Mapper;
+        private AltranSIWalletContext db;
+        private ConsultantRepository consultantRepository;
+        private UserRepository userRepository;
 
+        public ConsultantsController()
+        {
+            db = new AltranSIWalletContext();
+            consultantRepository = new ConsultantRepository(db);
+            userRepository = new UserRepository(db);
+        }
         /// <summary>
         /// Get All Consultants
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IQueryable<ConsultantReturnDto> GetAll()
+        public async Task<IHttpActionResult> GetAll()
         {
-            //return db.Consultants;
-            var consultants = db.Consultants.Select(c => new ConsultantReturnDto()
-            {
-                Id = c.Id,
-                Level = c.Level,
-                Manager = c.Manager,
-                Project = c.Project,
-                User = c.User,
-                SkillsFile = c.SkillsFile
-            });
-            //foreach (var item in consultants)
-            //{
-            //    item.LevelDescription = EnumHelper.GetDescription(item.Level);
-            //}
-            return consultants;
+            List<Consultant> consultants = await consultantRepository.FindAll().ToListAsync();
+            return Ok(consultants);
         }
 
         /// <summary>
@@ -48,17 +42,10 @@ namespace AltranSIWallet.Controllers
         /// </summary>
         /// <param name="level"></param>
         /// <returns></returns>
-        public IQueryable<ConsultantReturnDto> GetListByLevels(ELevels level)
+        public async Task<IHttpActionResult> GetListByLevels(ELevels level)
         {
-            var consultants = db.Consultants.Where(item => item.Level == level).Select(c => new ConsultantReturnDto() {
-                Id = c.Id,
-                Level = c.Level,
-                Manager = c.Manager,
-                Project = c.Project,
-                User = c.User,
-                SkillsFile = c.SkillsFile
-            });
-            return consultants;
+            List<Consultant> consultants = await consultantRepository.FindByCondition(item => item.Level == level).ToListAsync();
+            return Ok(consultants);
         }
 
         /// <summary>
@@ -69,11 +56,10 @@ namespace AltranSIWallet.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetById(int id)
         {
-            var consultant = await db.Consultants.FirstOrDefaultAsync(c => c.Id == id);
+            Consultant consultant = await consultantRepository.FindByCondition(item => item.Id == id).FirstOrDefaultAsync();
             if (consultant == null)
                 return Content(HttpStatusCode.NotFound, "Consultant not found");
 
-            Mapper.Map<Consultant, ConsultantReturnDto>(consultant);
             return Ok();
         }
 
@@ -89,8 +75,10 @@ namespace AltranSIWallet.Controllers
                 return BadRequest(ModelState);
             if (consultant.User == null)
                 return BadRequest("User can not be null");
-            db.Users.Add(consultant.User);
-            db.Consultants.Add(consultant);
+            //db.Users.Add(consultant.User);
+            //db.Consultants.Add(consultant);
+            userRepository.Create(consultant.User);
+            consultantRepository.Create(consultant);
             await db.SaveChangesAsync();
             return Ok();
         }
@@ -105,18 +93,17 @@ namespace AltranSIWallet.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-
-            db.Entry(consultant).State = EntityState.Modified;
-            db.Entry(consultant.User).State = EntityState.Modified;
+            userRepository.Update(consultant.User);
+            consultantRepository.Update(consultant);
             try {
                 await db.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException) {
-                int countConsultant = db.Consultants.Count(c => c.Id == consultant.Id);
-                int countUser = db.Users.Count(u => u.Id == consultant.User.Id);
-                if (countConsultant == 0)
+                Consultant consultantToUpdate = await consultantRepository.FindByCondition(item => item.Id == consultant.Id).FirstOrDefaultAsync();
+                if (consultantToUpdate == null)
                     return Content(HttpStatusCode.NotFound, "Consultant not found");
-                if (countUser == 0)
+                User userToUpdate = await userRepository.FindByCondition(item => item.Id == consultant.User.Id).FirstOrDefaultAsync();
+                if (userToUpdate == null)
                     return Content(HttpStatusCode.NotFound, "User not found");
                 throw;
             }
@@ -131,14 +118,14 @@ namespace AltranSIWallet.Controllers
         [HttpDelete]
         public async Task<IHttpActionResult> Delete(int id)
         {
-            Consultant consultant = await db.Consultants.FindAsync(id);
+            Consultant consultant = await consultantRepository.FindByCondition(item => item.Id == id).FirstOrDefaultAsync();
             if (consultant == null)
                 return Content(HttpStatusCode.NotFound, "Consultant not found");
-            User user = await db.Users.FindAsync(consultant.UserId);
+            User user = await userRepository.FindByCondition(item => item.Id == consultant.User.Id).FirstOrDefaultAsync();
             if (user == null)
                 return Content(HttpStatusCode.NotFound, "User not found");
-            db.Consultants.Remove(consultant);
-            db.Users.Remove(user);
+            consultantRepository.Delete(consultant);
+            userRepository.Delete(user);
             await db.SaveChangesAsync();
             return Ok();
         }

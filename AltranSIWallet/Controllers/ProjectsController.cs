@@ -1,4 +1,5 @@
 ﻿using AltranSIWallet.Models;
+using AltranSIWallet.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -13,16 +14,23 @@ namespace AltranSIWallet.Controllers
 {
     public class ProjectsController : ApiController
     {
-        private AltranSIWalletContext db = new AltranSIWalletContext();
+        private AltranSIWalletContext db;
+        private ProjectRepository projectRepository;
 
+        public ProjectsController()
+        {
+            db = new AltranSIWalletContext();
+            projectRepository = new ProjectRepository(db);
+        }
         /// <summary>
         /// Get All Projects
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IQueryable<Project> GetAll()
+        public async Task<IHttpActionResult> GetAll()
         {
-            return db.Projects;
+            List<Project> projects = await projectRepository.FindAll().ToListAsync();
+            return Ok(projects);
         }
 
         /// <summary>
@@ -33,7 +41,7 @@ namespace AltranSIWallet.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetById(int id)
         {
-            Project project = await db.Projects.FindAsync(id);
+            Project project = await projectRepository.FindByCondition(item => item.Id == id).FirstOrDefaultAsync();
             if (project == null)
                 return Content(HttpStatusCode.NotFound, "Project not found");
             return Ok(project);
@@ -49,7 +57,7 @@ namespace AltranSIWallet.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest();
-            db.Projects.Add(project);
+            projectRepository.Create(project);
             await db.SaveChangesAsync();
             return Ok();
         }
@@ -65,7 +73,7 @@ namespace AltranSIWallet.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            db.Entry(project).State = EntityState.Modified;
+            projectRepository.Update(project);
 
             try
             {
@@ -73,8 +81,8 @@ namespace AltranSIWallet.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                int countProject = db.Projects.Count(m => m.Id == project.Id);
-                if (countProject == 0)
+                Project projectToUpdate = await projectRepository.FindByCondition(item => item.Id == project.Id).FirstOrDefaultAsync(); 
+                if (projectToUpdate == null)
                     return Content(HttpStatusCode.NotFound, "Project not found");
                 throw;
             }
@@ -89,10 +97,10 @@ namespace AltranSIWallet.Controllers
         [HttpDelete]
         public async Task<IHttpActionResult> Delete(int id)
         {
-            Project project = await db.Projects.FindAsync(id);
+            Project project = await projectRepository.FindByCondition(item => item.Id == id).FirstOrDefaultAsync();
             if (project == null)
                 return Content(HttpStatusCode.NotFound, "Project not found");
-            db.Projects.Remove(project);
+            projectRepository.Delete(project);
             await db.SaveChangesAsync();
             return Ok();
         }

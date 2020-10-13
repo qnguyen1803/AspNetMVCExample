@@ -7,7 +7,7 @@ using System.Web;
 
 namespace AltranSIWallet.Models
 {
-    public class Consultant: Profil
+    public class Consultant : Profil
     {
         #region Properties
         [Required]

@@ -1,4 +1,5 @@
 ﻿using AltranSIWallet.Models;
+using AltranSIWallet.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -13,16 +14,25 @@ namespace AltranSIWallet.Controllers
 {
     public class ProjectManagersController : ApiController
     {
-        AltranSIWalletContext db = new AltranSIWalletContext();
+        private AltranSIWalletContext db;
+        private ProjectManagerRepository projectManagerRepository;
+        private UserRepository userRepository;
 
+        public ProjectManagersController()
+        {
+            db = new AltranSIWalletContext();
+            projectManagerRepository = new ProjectManagerRepository(db);
+            userRepository = new UserRepository(db);
+        }
         /// <summary>
         /// Get All ProjectManagers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IQueryable<ProjectManager> GetAll()
+        public async Task<IHttpActionResult> GetAll()
         {
-            return db.ProjectManagers;
+            List<ProjectManager> projectManagers = await projectManagerRepository.FindAll().ToListAsync();
+            return Ok(projectManagers);
         }
 
         /// <summary>
@@ -33,7 +43,7 @@ namespace AltranSIWallet.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetById(int id)
         {
-            ProjectManager projectManager = await db.ProjectManagers.FindAsync(id);
+            ProjectManager projectManager = await projectManagerRepository.FindByCondition(item => item.Id == id).FirstOrDefaultAsync();
             if (projectManager == null)
                 return Content(HttpStatusCode.NotFound, "Project Manager not found");
             return Ok(projectManager);
@@ -51,8 +61,8 @@ namespace AltranSIWallet.Controllers
                 return BadRequest();
             if (projectManager.User == null)
                 return BadRequest("User can not be null");
-            db.Users.Add(projectManager.User);
-            db.ProjectManagers.Add(projectManager);
+            userRepository.Create(projectManager.User);
+            projectManagerRepository.Create(projectManager);
             await db.SaveChangesAsync();
             return Ok();
         }
@@ -68,25 +78,20 @@ namespace AltranSIWallet.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            db.Entry(projectManager).State = EntityState.Modified;
-            db.Entry(projectManager.User).State = EntityState.Modified;
+            projectManagerRepository.Update(projectManager);
+            userRepository.Update(projectManager.User);
 
-            try
-            {
+            try {
                 await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                int countProjectManager = db.ProjectManagers.Count(m => m.Id == projectManager.Id);
-                int countUser = db.Users.Count(u => u.Id == projectManager.UserId);
-                if (countProjectManager == 0)
+            } catch (DbUpdateConcurrencyException) {
+                ProjectManager projectManagerToUpdate = await projectManagerRepository.FindByCondition(item => item.Id == projectManager.Id).FirstOrDefaultAsync();
+                if (projectManagerToUpdate == null)
                     return Content(HttpStatusCode.NotFound, "Project Manager not found");
-                if (countUser == 0)
+                User userToUpdate = await userRepository.FindByCondition(item => item.Id == projectManager.UserId).FirstOrDefaultAsync();
+                if (userToUpdate == null)
                     return Content(HttpStatusCode.NotFound, "User not found");
-
                 throw;
             }
-
             return Ok();
         }
 
@@ -97,14 +102,14 @@ namespace AltranSIWallet.Controllers
         [HttpDelete]
         public async Task<IHttpActionResult> Delete(int id)
         {
-            ProjectManager projectManager = await db.ProjectManagers.FindAsync(id);
+            ProjectManager projectManager = await projectManagerRepository.FindByCondition(item => item.Id == id).FirstOrDefaultAsync();
             if (projectManager == null)
                 return Content(HttpStatusCode.NotFound, "Manager not found");
-            User user = await db.Users.FindAsync(projectManager.UserId);
+            User user = await userRepository.FindByCondition(item => item.Id == projectManager.UserId).FirstOrDefaultAsync();
             if (user == null)
                 return Content(HttpStatusCode.NotFound, "User not found");
-            db.ProjectManagers.Remove(projectManager);
-            db.Users.Remove(user);
+            projectManagerRepository.Delete(projectManager);
+            userRepository.Delete(user);
             await db.SaveChangesAsync();
             return Ok();
         }
