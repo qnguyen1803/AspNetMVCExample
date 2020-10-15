@@ -1,5 +1,6 @@
-﻿using AltranSIWallet.Models;
-using AltranSIWallet.ModelsDto.Consultant;
+﻿using AltranSIWallet.Mappings;
+using AltranSIWallet.Models;
+using AltranSIWallet.ModelsDto;
 using AltranSIWallet.Repositories;
 using AltranSIWallet.Shared.Enum;
 using System;
@@ -17,8 +18,8 @@ namespace AltranSIWallet.Controllers
     public class ConsultantsController : ApiController
     {
         private AltranSIWalletContext db;
-        private ConsultantRepository consultantRepository;
-        private UserRepository userRepository;
+        private readonly ConsultantRepository consultantRepository;
+        private readonly UserRepository userRepository;
 
         public ConsultantsController()
         {
@@ -34,7 +35,7 @@ namespace AltranSIWallet.Controllers
         public async Task<IHttpActionResult> GetAll()
         {
             List<Consultant> consultants = await consultantRepository.FindAll().ToListAsync();
-            return Ok(consultants);
+            return Ok(consultants.Select(item => item.ConsultantToConsultantReturnDto()));
         }
 
         /// <summary>
@@ -45,7 +46,7 @@ namespace AltranSIWallet.Controllers
         public async Task<IHttpActionResult> GetListByLevels(ELevels level)
         {
             List<Consultant> consultants = await consultantRepository.FindByCondition(item => item.Level == level).ToListAsync();
-            return Ok(consultants);
+            return Ok(consultants.Select(item => item.ConsultantToConsultantReturnDto()));
         }
 
         /// <summary>
@@ -60,7 +61,7 @@ namespace AltranSIWallet.Controllers
             if (consultant == null)
                 return Content(HttpStatusCode.NotFound, "Consultant not found");
 
-            return Ok();
+            return Ok(consultant.ConsultantToConsultantReturnDto());
         }
 
         /// <summary>
@@ -69,16 +70,14 @@ namespace AltranSIWallet.Controllers
         /// <param name="consultant"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IHttpActionResult> Create([FromBody]Consultant consultant)
+        public async Task<IHttpActionResult> Create([FromBody]ConsultantAddDto consultantAddDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            if (consultant.User == null)
+            if (consultantAddDto.UserAddDto == null)
                 return BadRequest("User can not be null");
-            //db.Users.Add(consultant.User);
-            //db.Consultants.Add(consultant);
-            userRepository.Create(consultant.User);
-            consultantRepository.Create(consultant);
+            userRepository.Create(consultantAddDto.UserAddDto.UserAddDtoToUser());
+            consultantRepository.Create(consultantAddDto.ConsultantAddDtoToConsultant());
             await db.SaveChangesAsync();
             return Ok();
         }
@@ -89,20 +88,20 @@ namespace AltranSIWallet.Controllers
         /// <param name="consultant"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IHttpActionResult> Update([FromBody]Consultant consultant)
+        public async Task<IHttpActionResult> Update([FromBody]ConsultantUpdateDto consultantUpdateDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            userRepository.Update(consultant.User);
-            consultantRepository.Update(consultant);
+            userRepository.Update(consultantUpdateDto.User);
+            consultantRepository.Update(consultantUpdateDto.ConsultantUpdateDtoToConsultant());
             try {
                 await db.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException) {
-                Consultant consultantToUpdate = await consultantRepository.FindByCondition(item => item.Id == consultant.Id).FirstOrDefaultAsync();
+                Consultant consultantToUpdate = await consultantRepository.FindByCondition(item => item.Id == consultantUpdateDto.Id).FirstOrDefaultAsync();
                 if (consultantToUpdate == null)
                     return Content(HttpStatusCode.NotFound, "Consultant not found");
-                User userToUpdate = await userRepository.FindByCondition(item => item.Id == consultant.User.Id).FirstOrDefaultAsync();
+                User userToUpdate = await userRepository.FindByCondition(item => item.Id == consultantUpdateDto.User.Id).FirstOrDefaultAsync();
                 if (userToUpdate == null)
                     return Content(HttpStatusCode.NotFound, "User not found");
                 throw;
@@ -118,10 +117,10 @@ namespace AltranSIWallet.Controllers
         [HttpDelete]
         public async Task<IHttpActionResult> Delete(int id)
         {
-            Consultant consultant = await consultantRepository.FindByCondition(item => item.Id == id).FirstOrDefaultAsync();
+            Consultant consultant = await consultantRepository.FindByCondition(item => item.Id == id).FirstAsync();
             if (consultant == null)
                 return Content(HttpStatusCode.NotFound, "Consultant not found");
-            User user = await userRepository.FindByCondition(item => item.Id == consultant.User.Id).FirstOrDefaultAsync();
+            User user = await userRepository.FindByCondition(item => item.Id == consultant.UserId).FirstAsync();
             if (user == null)
                 return Content(HttpStatusCode.NotFound, "User not found");
             consultantRepository.Delete(consultant);

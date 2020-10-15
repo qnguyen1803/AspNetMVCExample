@@ -15,8 +15,8 @@ namespace AltranSIWallet.Controllers
     public class ProjectManagersController : ApiController
     {
         private AltranSIWalletContext db;
-        private ProjectManagerRepository projectManagerRepository;
-        private UserRepository userRepository;
+        private readonly ProjectManagerRepository projectManagerRepository;
+        private readonly UserRepository userRepository;
 
         public ProjectManagersController()
         {

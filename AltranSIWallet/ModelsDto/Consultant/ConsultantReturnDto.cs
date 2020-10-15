@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace AltranSIWallet.ModelsDto.Consultant
+namespace AltranSIWallet.ModelsDto
 {
     public class ConsultantReturnDto
     {
@@ -16,7 +16,7 @@ namespace AltranSIWallet.ModelsDto.Consultant
         #endregion
 
         #region NavigationProperties
-        public ELevels Level { get; set; }
+        public EnumModel Level { get; set; }
         //public string LevelDescription { get; set; }
         public string SkillsFile { get; set; }
         #endregion

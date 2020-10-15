@@ -207,6 +207,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Mappings\ConsultantMappings.cs" />
+    <Compile Include="Mappings\UserMappings.cs" />
     <Compile Include="Migrations\202010071242259_ProfilProjectUser.cs" />
     <Compile Include="Migrations\202010071242259_ProfilProjectUser.designer.cs">
       <DependentUpon>202010071242259_ProfilProjectUser.cs</DependentUpon>
@@ -228,7 +230,10 @@
       <DependentUpon>202010082111481_FixPropertyProjectManagerInProject.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ModelsDto\Consultant\ConsultantAddDto.cs" />
     <Compile Include="ModelsDto\Consultant\ConsultantReturnDto.cs" />
+    <Compile Include="ModelsDto\Consultant\ConsultantUpdateDto.cs" />
+    <Compile Include="ModelsDto\User\UserAddDto.cs" />
     <Compile Include="Models\AltranSIWalletContext.cs" />
     <Compile Include="Models\Profil\Consultant.cs" />
     <Compile Include="Models\Profil\Manager.cs" />
@@ -403,12 +408,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Mappings\" />
     <Folder Include="ModelsDto\Enum\" />
     <Folder Include="ModelsDto\Manager\" />
     <Folder Include="ModelsDto\ProjectManager\" />
     <Folder Include="ModelsDto\Project\" />
-    <Folder Include="ModelsDto\User\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

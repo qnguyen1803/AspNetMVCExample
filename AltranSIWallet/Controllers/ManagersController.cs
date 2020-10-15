@@ -15,8 +15,8 @@ namespace AltranSIWallet.Controllers
     public class ManagersController : ApiController
     {
         private AltranSIWalletContext db;
-        private ManagerRepository managerRepository;
-        private UserRepository userRepository;
+        private readonly ManagerRepository managerRepository;
+        private readonly UserRepository userRepository;
 
         public ManagersController()
         {
