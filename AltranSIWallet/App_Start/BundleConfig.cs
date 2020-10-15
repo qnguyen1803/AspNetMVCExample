@@ -22,6 +22,14 @@ namespace AltranSIWallet
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                        "~/Scripts/angular.min.js"));
+            bundles.Add(new ScriptBundle("~/bundles/angularApp").Include(
+                        "~/Scripts/custom/app.js"));
+            bundles.Add(new ScriptBundle("~/bundles/angularConsultant").Include(
+                        "~/Scripts/custom/consultant.js"));
         }
+
     }
 }

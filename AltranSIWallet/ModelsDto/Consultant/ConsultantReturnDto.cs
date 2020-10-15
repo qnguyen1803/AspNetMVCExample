@@ -22,9 +22,9 @@ namespace AltranSIWallet.ModelsDto
         #endregion
 
         #region NavigationProperties
-        public virtual User User { get; set; }
-        public virtual Project Project { get; set; }
-        public virtual Manager Manager { get; set; }
+        public User User { get; set; }
+        public Project Project { get; set; }
+        public Manager Manager { get; set; }
         #endregion
     }
 }

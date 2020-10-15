@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@Scripts.Render("~/bundles/angularConsultant")
+
+<h2>Index</h2>
+
+<div ng-controller="consultantController">
+    <table class="table table-bordered">
+        <thead class="text-center">
+            <tr>
+                <th rowspan=2 class="align-middle">Id</th>
+                <th rowspan=2 class="align-middle">Level</th>
+                <th rowspan=2 class="align-middle">Manager</th>
+                <th rowspan=2 class="align-middle">Project</th>
+                <th rowspan=2 class="align-middle">File</th>
+                <th colspan=8>User</th>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>EntryDate</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Password</th>
+                <th>Salary</th>
+                <th>Username</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in consultants">
+                <td>{{item.Id}}</td>
+                <td>{{item.Level.Value}}</td>
+                <td>{{item.Manager}}</td>
+                <td>{{item.Project}}</td>
+                <td>{{item.SkillsFile}}</td>
+                <td>{{item.User.Id}}</td>
+                <td>{{item.User.Email}}</td>
+                <td>{{item.User.EntryDate}}</td>
+                <td>{{item.User.FirstName}}</td>
+                <td>{{item.User.LastName}}</td>
+                <td>{{item.User.Password}}</td>
+                <td>{{item.User.Salary}}</td>
+                <td>{{item.User.Username}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+@*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+    @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+
+
+
+
+
+

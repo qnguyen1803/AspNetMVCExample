@@ -17,6 +17,6 @@ namespace AltranSIWallet.ModelsDto
         public string SkillsFile { get; set; }
         public int? ProjectId { get; set; }
         public int? ManagerId { get; set; }
-        public virtual User User { get; set; }
+        public User User { get; set; }
     }
 }

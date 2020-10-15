@@ -1,4 +1,6 @@
-﻿using AltranSIWallet.Models;
+﻿using AltranSIWallet.Mappings;
+using AltranSIWallet.Models;
+using AltranSIWallet.ModelsDto;
 using AltranSIWallet.Repositories;
 using System;
 using System.Collections.Generic;
@@ -32,7 +34,7 @@ namespace AltranSIWallet.Controllers
         public async Task<IHttpActionResult> GetAll()
         {
             List<Manager> managers = await managerRepository.FindAll().ToListAsync();
-            return Ok(managers);
+            return Ok(managers.Select(item => item.ManagerToManagerReturnDto()));
         }
 
         /// <summary>
@@ -46,7 +48,7 @@ namespace AltranSIWallet.Controllers
             Manager manager = await managerRepository.FindByCondition(item => item.Id == id).FirstOrDefaultAsync();
             if (manager == null)
                 return Content(HttpStatusCode.NotFound, "Manager not found");
-            return Ok(manager);
+            return Ok(manager.ManagerToManagerReturnDto());
         }
 
         /// <summary>
@@ -55,14 +57,14 @@ namespace AltranSIWallet.Controllers
         /// <param name="manager"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IHttpActionResult> Create(Manager manager)
+        public async Task<IHttpActionResult> Create(ManagerAddDto managerAddDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
-            if (manager.User == null)
+            if (managerAddDto.UserAddDto == null)
                 return BadRequest("User can not be null");
-           userRepository.Create(manager.User);
-           managerRepository.Create(manager);
+           userRepository.Create(managerAddDto.UserAddDto.UserAddDtoToUser());
+           managerRepository.Create(managerAddDto.ManagerAddDtoToManager());
            await db.SaveChangesAsync();
            return Ok();
         }
