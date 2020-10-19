@@ -3,6 +3,10 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
-
+<div ng-controller="consultantCreateController">
+    <h2>Create</h2>
+    <div id="loadingDiv" ng-show="isloading">
+        <span class="spinner"><i class="fa fa-spinner fa-spin fa-5x"></i></span>
+    </div>
+ </div>
 

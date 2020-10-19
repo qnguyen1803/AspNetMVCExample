@@ -28,6 +28,8 @@ namespace AltranSIWallet
                         "~/Scripts/angular.min.js"));
             bundles.Add(new ScriptBundle("~/bundles/angularApp").Include(
                         "~/Scripts/custom/app.js"));
+            bundles.Add(new ScriptBundle("~/bundles/enums").Include(
+                        "~/Scripts/custom/enums.js"));
             bundles.Add(new ScriptBundle("~/bundles/angularConsultant").Include(
                         "~/Scripts/custom/consultant.js"));
             bundles.Add(new ScriptBundle("~/bundles/angularManager").Include(

@@ -301,6 +301,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\custom\app.js" />
     <Content Include="Scripts\custom\consultant.js" />
+    <Content Include="Scripts\custom\enums.js" />
     <Content Include="Scripts\custom\manager.js" />
     <Content Include="Scripts\custom\project-manager.js" />
     <Content Include="Scripts\custom\project.js" />

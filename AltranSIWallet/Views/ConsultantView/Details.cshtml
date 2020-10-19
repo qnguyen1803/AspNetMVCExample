@@ -3,9 +3,12 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details du consultant</h2>
-
 <div ng-controller="consultantDetailController">
+    <div id="loadingDiv" ng-show="isloading">
+        <span class="spinner"><i class="fa fa-spinner fa-spin fa-5x"></i></span>
+    </div>
+
+    <h2>Details du consultant</h2>
     <table class="table table-bordered">
         <tbody>
             <tr>
@@ -15,7 +18,7 @@
             <tr>
                 <th scope="row">Level</th>
                 <td>{{consultant.Level.Description}}</td>
-            </tr>            
+            </tr>
             <tr>
                 <th scope="row">Manager</th>
                 <td>
@@ -29,43 +32,43 @@
                     <p><strong>EntryDate</strong> : {{consultant.Manager.User.EntryDate}}</p>
                     <p><strong>ConsultantsTotal</strong> : {{consultant.Manager.Consultants.length}}</p>
                 </td>
-            </tr>            
+            </tr>
             <tr>
                 <th scope="row">Project</th>
                 <td>{{consultant.Project}}</td>
-            </tr>            
+            </tr>
             <tr>
                 <th scope="row">SkillsFile</th>
                 <td>{{consultant.SkillsFile}}</td>
-            </tr>            
+            </tr>
             <tr>
                 <th scope="row">User Id</th>
                 <td>{{consultant.User.Id}}</td>
-            </tr>            
+            </tr>
             <tr>
                 <th scope="row">User Email</th>
                 <td>{{consultant.User.Email}}</td>
-            </tr>            
+            </tr>
             <tr>
                 <th scope="row">User EntryDate</th>
                 <td>{{consultant.User.EntryDate}}</td>
-            </tr>            
+            </tr>
             <tr>
                 <th scope="row">User FirstName</th>
                 <td>{{consultant.User.FirstName}}</td>
-            </tr>            
+            </tr>
             <tr>
                 <th scope="row">User LastName</th>
                 <td>{{consultant.User.LastName}}</td>
-            </tr>            
+            </tr>
             <tr>
                 <th scope="row">User Password</th>
                 <td>{{consultant.User.Password}}</td>
-            </tr>            
+            </tr>
             <tr>
                 <th scope="row">User Salary</th>
                 <td>{{consultant.User.Salary}}</td>
-            </tr>         
+            </tr>
             <tr>
                 <th scope="row">User Username</th>
                 <td>{{consultant.User.Username}}</td>

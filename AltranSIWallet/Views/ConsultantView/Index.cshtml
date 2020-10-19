@@ -4,7 +4,7 @@
 }
 
 <div ng-controller="consultantListController">
-    <div id="loadingDiv">
+    <div id="loadingDiv" ng-show="isloading">
         <span class="spinner"><i class="fa fa-spinner fa-spin fa-5x"></i></span>
     </div>
     <h2>Liste des Consultants</h2>
