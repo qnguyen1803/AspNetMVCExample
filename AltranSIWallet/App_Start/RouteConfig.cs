@@ -16,7 +16,7 @@ namespace AltranSIWallet
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "HomeWiew", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "HomeView", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

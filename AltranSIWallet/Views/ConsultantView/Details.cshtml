@@ -1,0 +1,75 @@
+﻿@Scripts.Render("~/bundles/angularConsultant")
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details du consultant</h2>
+
+<div ng-controller="consultantDetailController">
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <th scope="row">Id</th>
+                <td>{{consultant.Id}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Level</th>
+                <td>{{consultant.Level.Description}}</td>
+            </tr>            
+            <tr>
+                <th scope="row">Manager</th>
+                <td>
+                    <p><strong>Id</strong> : {{consultant.Manager.Id}}</p>
+                    <p><strong>UserId</strong> : {{consultant.Manager.User.Id}}</p>
+                    <p><strong>FirstName</strong> : {{consultant.Manager.User.FirstName}}</p>
+                    <p><strong>LastName</strong> : {{consultant.Manager.User.LastName}}</p>
+                    <p><strong>UserName</strong> : {{consultant.Manager.User.UserName}}</p>
+                    <p><strong>Email</strong> : {{consultant.Manager.User.Email}}</p>
+                    <p><strong>Salary</strong> : {{consultant.Manager.User.Salary}}</p>
+                    <p><strong>EntryDate</strong> : {{consultant.Manager.User.EntryDate}}</p>
+                    <p><strong>ConsultantsTotal</strong> : {{consultant.Manager.Consultants.length}}</p>
+                </td>
+            </tr>            
+            <tr>
+                <th scope="row">Project</th>
+                <td>{{consultant.Project}}</td>
+            </tr>            
+            <tr>
+                <th scope="row">SkillsFile</th>
+                <td>{{consultant.SkillsFile}}</td>
+            </tr>            
+            <tr>
+                <th scope="row">User Id</th>
+                <td>{{consultant.User.Id}}</td>
+            </tr>            
+            <tr>
+                <th scope="row">User Email</th>
+                <td>{{consultant.User.Email}}</td>
+            </tr>            
+            <tr>
+                <th scope="row">User EntryDate</th>
+                <td>{{consultant.User.EntryDate}}</td>
+            </tr>            
+            <tr>
+                <th scope="row">User FirstName</th>
+                <td>{{consultant.User.FirstName}}</td>
+            </tr>            
+            <tr>
+                <th scope="row">User LastName</th>
+                <td>{{consultant.User.LastName}}</td>
+            </tr>            
+            <tr>
+                <th scope="row">User Password</th>
+                <td>{{consultant.User.Password}}</td>
+            </tr>            
+            <tr>
+                <th scope="row">User Salary</th>
+                <td>{{consultant.User.Salary}}</td>
+            </tr>         
+            <tr>
+                <th scope="row">User Username</th>
+                <td>{{consultant.User.Username}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

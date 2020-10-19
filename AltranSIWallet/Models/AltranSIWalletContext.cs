@@ -15,9 +15,7 @@ namespace AltranSIWallet.Models
         // For more information refer to the documentation:
         // http://msdn.microsoft.com/en-us/data/jj591621.aspx
     
-        public AltranSIWalletContext() : base("name=AltranSIWalletContext")
-        {
-        }
+        public AltranSIWalletContext() : base("name=AltranSIWalletContext"){}
 
         public DbSet<User> Users { get; set; }
         public DbSet<Project> Projects { get; set; }

@@ -1,0 +1,66 @@
+﻿@Scripts.Render("~/bundles/angularConsultant")
+@{
+    ViewBag.Title = "Liste des consultants";
+}
+
+<div ng-controller="consultantListController">
+    <div id="loadingDiv">
+        <span class="spinner"><i class="fa fa-spinner fa-spin fa-5x"></i></span>
+    </div>
+    <h2>Liste des Consultants</h2>
+    <div>
+        <table class="table table-bordered">
+            <thead class="text-center">
+                <tr>
+                    <th rowspan=2 class="align-middle">Id</th>
+                    <th rowspan=2 class="align-middle">Level</th>
+                    <th rowspan=2 class="align-middle">Manager</th>
+                    <th rowspan=2 class="align-middle">Project</th>
+                    <th rowspan=2 class="align-middle">File</th>
+                    <th colspan=8>User</th>
+                    <th rowspan=2 class="align-middle">Detail</th>
+                </tr>
+                <tr>
+                    <th>Id</th>
+                    <th>Email</th>
+                    <th>EntryDate</th>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>Password</th>
+                    <th>Salary</th>
+                    <th>Username</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in consultants">
+                    <td>{{item.Id}}</td>
+                    <td>{{item.Level.Description}}</td>
+                    <td>
+                        <p><strong>Id</strong> : {{item.Manager.Id}}</p>
+                        <p><strong>UserId</strong> : {{item.Manager.User.Id}}</p>
+                        <p><strong>FirstName</strong> : {{item.Manager.User.FirstName}}</p>
+                        <p><strong>LastName</strong> : {{item.Manager.User.LastName}}</p>
+                        <p><strong>UserName</strong> : {{item.Manager.User.UserName}}</p>
+                        <p><strong>Email</strong> : {{item.Manager.User.Email}}</p>
+                        <p><strong>Salary</strong> : {{item.Manager.User.Salary}}</p>
+                        <p><strong>EntryDate</strong> : {{item.Manager.User.EntryDate}}</p>
+                        <p><strong>ConsultantsTotal</strong> : {{item.Manager.Consultants.length}}</p>
+                    </td>
+                    <td>{{item.Project}}</td>
+                    <td>{{item.SkillsFile}}</td>
+                    <td>{{item.User.Id}}</td>
+                    <td>{{item.User.Email}}</td>
+                    <td>{{item.User.EntryDate}}</td>
+                    <td>{{item.User.FirstName}}</td>
+                    <td>{{item.User.LastName}}</td>
+                    <td>{{item.User.Password}}</td>
+                    <td>{{item.User.Salary}}</td>
+                    <td>{{item.User.Username}}</td>
+                    <td class="text-center"><a href="@Url.Action("Details","ConsultantView")?id={{item.Id}}"><i class="fa fa-eye"></i></a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+

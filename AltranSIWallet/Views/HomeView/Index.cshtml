@@ -1,12 +1,15 @@
-﻿
+﻿@Scripts.Render("~/bundles/angularConsultant")
+@Scripts.Render("~/bundles/angularManager")
+@Scripts.Render("~/bundles/angularProjectManager")
+@Scripts.Render("~/bundles/angularProject")
 @{
     ViewBag.Title = "Index";
 }
-@Scripts.Render("~/bundles/angularConsultant")
 
-<h2>Index</h2>
+<h2>Page d'accueil</h2>
 
-<div ng-controller="consultantController">
+<h3><a href="#consultantsList" data-toggle="collapse" class="title-toogle">Liste des consultants</a></h3>
+<div ng-controller="consultantListController" id="consultantsList" class="collapse">
     <table class="table table-bordered">
         <thead class="text-center">
             <tr>
@@ -16,6 +19,7 @@
                 <th rowspan=2 class="align-middle">Project</th>
                 <th rowspan=2 class="align-middle">File</th>
                 <th colspan=8>User</th>
+                <th rowspan=2 class="align-middle">Detail</th>
             </tr>
             <tr>
                 <th>Id</th>
@@ -31,7 +35,101 @@
         <tbody>
             <tr ng-repeat="item in consultants">
                 <td>{{item.Id}}</td>
-                <td>{{item.Level.Value}}</td>
+                <td>{{item.Level.Description}}</td>
+                <td>
+                    <p>Id : {{item.Manager.Id}}</p>
+                    <p>UserId : {{item.Manager.User.Id}}</p>
+                    <p>FirstName : {{item.Manager.User.FirstName}}</p>
+                    <p>LastName : {{item.Manager.User.LastName}}</p>
+                    <p>UserName: {{item.Manager.User.UserName}}</p>
+                    <p>Email : {{item.Manager.User.Email}}</p>
+                    <p>Salary : {{item.Manager.User.Salary}}</p>
+                    <p>EntryDate : {{item.Manager.User.EntryDate}}</p>
+                    <p>ConsultantsTotal : {{item.Manager.Consultants.length}}</p>
+                </td>
+                <td>{{item.Project}}</td>
+                <td>{{item.SkillsFile}}</td>
+                <td>{{item.User.Id}}</td>
+                <td>{{item.User.Email}}</td>
+                <td>{{item.User.EntryDate}}</td>
+                <td>{{item.User.FirstName}}</td>
+                <td>{{item.User.LastName}}</td>
+                <td>{{item.User.Password}}</td>
+                <td>{{item.User.Salary}}</td>
+                <td>{{item.User.Username}}</td>
+                <td class="text-center"><a href="@Url.Action("Details","ConsultantView")?id={{item.Id}}"><i class="fa fa-eye"></i></a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h3><a href="#managersList" data-toggle="collapse" class="title-toogle">Liste des Managers</a></h3>
+<div ng-controller="managerListController" id="managersList" class="collapse">
+    <table class="table table-bordered">
+        <thead class="text-center">
+            <tr>
+                <th rowspan=2 class="align-middle">Id</th>
+                <th rowspan=2 class="align-middle">File</th>
+                <th colspan=8>User</th>
+                <th rowspan=2 class="align-middle">Detail</th>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>EntryDate</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Password</th>
+                <th>Salary</th>
+                <th>Username</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in managers">
+                <td>{{item.Id}}</td>
+                <td>{{item.SkillsFile}}</td>
+                <td>{{item.User.Id}}</td>
+                <td>{{item.User.Email}}</td>
+                <td>{{item.User.EntryDate}}</td>
+                <td>{{item.User.FirstName}}</td>
+                <td>{{item.User.LastName}}</td>
+                <td>{{item.User.Password}}</td>
+                <td>{{item.User.Salary}}</td>
+                <td>{{item.User.Username}}</td>
+                <td class="text-center"><a href="@Url.Action("Details","ConsultantView")?id={{item.Id}}"><i class="fa fa-eye"></i></a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h3><a href="#projectmanagersList" data-toggle="collapse" class="title-toogle">Liste des Project Managers</a></h3>
+@*<div ng-controller="projectManagerListController" id="projectmanagersList" class="collapse">
+    <table class="table table-bordered">
+        <thead class="text-center">
+            <tr>
+                <th rowspan=2 class="align-middle">Id</th>
+                <th rowspan=2 class="align-middle">Level</th>
+                <th rowspan=2 class="align-middle">Manager</th>
+                <th rowspan=2 class="align-middle">Project</th>
+                <th rowspan=2 class="align-middle">File</th>
+                <th colspan=8>User</th>
+                <th rowspan=2 class="align-middle">Detail</th>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>EntryDate</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Password</th>
+                <th>Salary</th>
+                <th>Username</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in projectManagers">
+                <td>{{item.Id}}</td>
+                <td>{{item.Level.Description}}</td>
                 <td>{{item.Manager}}</td>
                 <td>{{item.Project}}</td>
                 <td>{{item.SkillsFile}}</td>
@@ -43,15 +141,58 @@
                 <td>{{item.User.Password}}</td>
                 <td>{{item.User.Salary}}</td>
                 <td>{{item.User.Username}}</td>
+                <td class="text-center"><a href="@Url.Action("Details","HomeView")?id={{item.Id}}"><i class="fa fa-eye"></i></a></td>
             </tr>
         </tbody>
     </table>
-</div>
+</div>*@
+
+<h3><a href="#projectsList" data-toggle="collapse" class="title-toogle">Liste des Projects</a></h3>
+@*<div ng-controller="projectListController" id="projectsList" class="collapse">
+    <table class="table table-bordered">
+        <thead class="text-center">
+            <tr>
+                <th rowspan=2 class="align-middle">Id</th>
+                <th rowspan=2 class="align-middle">Level</th>
+                <th rowspan=2 class="align-middle">Manager</th>
+                <th rowspan=2 class="align-middle">Project</th>
+                <th rowspan=2 class="align-middle">File</th>
+                <th colspan=8>User</th>
+                <th rowspan=2 class="align-middle">Detail</th>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>EntryDate</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Password</th>
+                <th>Salary</th>
+                <th>Username</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in projectManagers">
+                <td>{{item.Id}}</td>
+                <td>{{item.Level.Description}}</td>
+                <td>{{item.Manager}}</td>
+                <td>{{item.Project}}</td>
+                <td>{{item.SkillsFile}}</td>
+                <td>{{item.User.Id}}</td>
+                <td>{{item.User.Email}}</td>
+                <td>{{item.User.EntryDate}}</td>
+                <td>{{item.User.FirstName}}</td>
+                <td>{{item.User.LastName}}</td>
+                <td>{{item.User.Password}}</td>
+                <td>{{item.User.Salary}}</td>
+                <td>{{item.User.Username}}</td>
+                <td class="text-center"><a href="@Url.Action("Details","HomeView")?id={{item.Id}}"><i class="fa fa-eye"></i></a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>*@
 
 
-@*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-    @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
 
 
 

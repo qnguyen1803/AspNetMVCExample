@@ -13,13 +13,6 @@ namespace AltranSIWallet.ControllersViews
 {
     public class HomeViewController : Controller
     {
-        private ConsultantsController consultantController;
-
-        public HomeViewController()
-        {
-            consultantController = new ConsultantsController();
-        }
-
         // GET: Home
         public ActionResult Index()
         {
@@ -27,19 +20,10 @@ namespace AltranSIWallet.ControllersViews
         }
 
         // GET: Home/Details/5
-        //public ActionResult Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Consultant consultant = db.Profils.Find(id);
-        //    if (consultant == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(consultant);
-        //}
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
 
         // GET: Home/Create
         //public ActionResult Create()

@@ -200,7 +200,11 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="ControllersViews\ConsultantViewController.cs" />
     <Compile Include="ControllersViews\HomeViewController.cs" />
+    <Compile Include="ControllersViews\ManagerViewController.cs" />
+    <Compile Include="ControllersViews\ProjectManagerController.cs" />
+    <Compile Include="ControllersViews\ProjectViewController.cs" />
     <Compile Include="Controllers\ConsultantsController.cs" />
     <Compile Include="Controllers\ManagersController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
@@ -264,7 +268,10 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
@@ -294,6 +301,9 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\custom\app.js" />
     <Content Include="Scripts\custom\consultant.js" />
+    <Content Include="Scripts\custom\manager.js" />
+    <Content Include="Scripts\custom\project-manager.js" />
+    <Content Include="Scripts\custom\project.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -314,6 +324,11 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
@@ -415,10 +430,13 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\HomeView\Create.cshtml" />
-    <Content Include="Views\HomeView\Delete.cshtml" />
-    <Content Include="Views\HomeView\Details.cshtml" />
-    <Content Include="Views\HomeView\Edit.cshtml" />
+    <Content Include="Views\ConsultantView\Index.cshtml" />
+    <Content Include="Views\ConsultantView\Details.cshtml" />
+    <Content Include="Views\ProjectView\Index.cshtml" />
+    <Content Include="Views\ManagerView\Index.cshtml" />
+    <Content Include="Views\ProjectManager\Index.cshtml" />
+    <Content Include="Views\ConsultantView\Create.cshtml" />
+    <Content Include="Views\ConsultantView\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
