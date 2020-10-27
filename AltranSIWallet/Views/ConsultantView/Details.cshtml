@@ -3,12 +3,12 @@
     ViewBag.Title = "Details";
 }
 
+<h2>Details du consultant</h2>
 <div ng-controller="consultantDetailController">
     <div id="loadingDiv" ng-show="isloading">
         <span class="spinner"><i class="fa fa-spinner fa-spin fa-5x"></i></span>
     </div>
-
-    <h2>Details du consultant</h2>
+    <div class="text-right mb-2"><button class="btn btn-danger btn-sm" ng-click="remove()">Supprimer</button></div>
     <table class="table table-bordered">
         <tbody>
             <tr>

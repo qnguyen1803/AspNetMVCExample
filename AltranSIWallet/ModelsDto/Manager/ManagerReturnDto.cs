@@ -10,6 +10,6 @@ namespace AltranSIWallet.ModelsDto
     {
         public int Id { get; set; }
         public User User { get; set; }
-        public ICollection<Consultant> Consultants { get; set; }
+        public ICollection<ConsultantReturnDto> Consultants { get; set; }
     }
 }

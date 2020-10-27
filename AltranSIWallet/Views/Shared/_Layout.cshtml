@@ -6,21 +6,20 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/angular")
-    @Scripts.Render("~/bundles/angularApp")
+    @Scripts.Render("~/bundles/baseScript")
 </head>
 <body ng-app="ssiiWallet">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">SSII Hierarchy</a>
+        @Html.ActionLink("SSII Hierarchy", "Index", "HomeView", new { area = "" }, new { @class = "navbar-brand" })
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                @Html.ActionLink("Application name", "Index", "HomeView", new { area = "" }, new { @class = "nav-item nav-link active" })
-                <a class="nav-item nav-link" href="#">Features</a>
-                <a class="nav-item nav-link" href="#">Pricing</a>
-                <a class="nav-item nav-link disabled" href="#">Disabled</a>
+                @Html.ActionLink("Consultants", "Index", "ConsultantView", new { area = "" }, new { @class = "nav-item nav-link" })
+                @Html.ActionLink("Managers", "Index", "ManagerView", new { area = "" }, new { @class = "nav-item nav-link" })
+                @Html.ActionLink("Project Managers", "Index", "ProjectManagerView", new { area = "" }, new { @class = "nav-item nav-link" })
+                @Html.ActionLink("Projects", "Index", "ProjectView", new { area = "" }, new { @class = "nav-item nav-link" })
             </div>
         </div>
     </nav>
@@ -33,6 +32,7 @@
     </footer>
 
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/toastr")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

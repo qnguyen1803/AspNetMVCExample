@@ -157,6 +157,7 @@ C:\Users\qhnguyen\source\repos\AltranSIWallet\AltranSIWallet\bin\Microsoft.Exten
 C:\Users\qhnguyen\source\repos\AltranSIWallet\AltranSIWallet\bin\Microsoft.Extensions.Primitives.dll
 C:\Users\qhnguyen\source\repos\AltranSIWallet\AltranSIWallet\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\qhnguyen\source\repos\AltranSIWallet\AltranSIWallet\bin\Newtonsoft.Json.dll
+C:\Users\qhnguyen\source\repos\AltranSIWallet\AltranSIWallet\bin\Owin.dll
 C:\Users\qhnguyen\source\repos\AltranSIWallet\AltranSIWallet\bin\Swashbuckle.Core.dll
 C:\Users\qhnguyen\source\repos\AltranSIWallet\AltranSIWallet\bin\System.Buffers.dll
 C:\Users\qhnguyen\source\repos\AltranSIWallet\AltranSIWallet\bin\System.ComponentModel.Annotations.dll
@@ -202,6 +203,7 @@ C:\Users\qhnguyen\source\repos\AltranSIWallet\AltranSIWallet\bin\System.Web.WebP
 C:\Users\qhnguyen\source\repos\AltranSIWallet\AltranSIWallet\bin\Newtonsoft.Json.xml
 C:\Users\qhnguyen\source\repos\AltranSIWallet\AltranSIWallet\bin\System.Web.Optimization.xml
 C:\Users\qhnguyen\source\repos\AltranSIWallet\AltranSIWallet\bin\Antlr3.Runtime.pdb
+C:\Users\qhnguyen\source\repos\AltranSIWallet\AltranSIWallet\obj\Debug\AltranSIWallet.csprojAssemblyReference.cache
 C:\Users\qhnguyen\source\repos\AltranSIWallet\AltranSIWallet\obj\Debug\AltranSIWallet.Migrations.ProfilProjectUser.resources
 C:\Users\qhnguyen\source\repos\AltranSIWallet\AltranSIWallet\obj\Debug\AltranSIWallet.Migrations.ManagerIdUserIdNotRequired.resources
 C:\Users\qhnguyen\source\repos\AltranSIWallet\AltranSIWallet\obj\Debug\AltranSIWallet.Migrations.SomePropertiesNotRequired.resources
@@ -212,5 +214,3 @@ C:\Users\qhnguyen\source\repos\AltranSIWallet\AltranSIWallet\obj\Debug\AltranSIW
 C:\Users\qhnguyen\source\repos\AltranSIWallet\AltranSIWallet\obj\Debug\AltranSIWallet.csproj.CopyComplete
 C:\Users\qhnguyen\source\repos\AltranSIWallet\AltranSIWallet\obj\Debug\AltranSIWallet.dll
 C:\Users\qhnguyen\source\repos\AltranSIWallet\AltranSIWallet\obj\Debug\AltranSIWallet.pdb
-C:\Users\qhnguyen\source\repos\AltranSIWallet\AltranSIWallet\bin\Owin.dll
-C:\Users\qhnguyen\source\repos\AltranSIWallet\AltranSIWallet\obj\Debug\AltranSIWallet.csprojAssemblyReference.cache

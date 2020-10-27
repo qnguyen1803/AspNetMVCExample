@@ -1,0 +1,71 @@
+﻿@Scripts.Render("~/bundles/angularManager")
+@{
+    ViewBag.Title = "Details Manager";
+}
+
+<h2>Details du Manager</h2>
+<div ng-controller="managerDetailController">
+    <div id="loadingDiv" ng-show="isloading">
+        <span class="spinner"><i class="fa fa-spinner fa-spin fa-5x"></i></span>
+    </div>
+    <div class="text-right mb-2"><button class="btn btn-danger btn-sm" ng-click="remove()">Supprimer</button></div>
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <th scope="row">Id</th>
+                <td>{{manager.Id}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Consultant</th>
+                <td>
+                    <div ng-repeat="consultant in manager.Consultants" class="border-bottom pb-2">
+                        <p><strong>Id</strong> : {{consultant.Id}}</p>
+                        <p><strong>SkillsFile</strong> : {{consultant.SkillsFile}}</p>
+                        <p><strong>Level</strong> : {{consultant.Level.Description}}</p>
+                        <p><strong>User Id</strong> : {{consultant.User.Id}} </p>
+                        <p><strong>User Email</strong> : {{consultant.User.Email}}</p>
+                        <p><strong>User EntryDate</strong> : {{consultant.User.EntryDate}}</p>
+                        <p><strong>User FirstName</strong> : {{consultant.User.FirstName}}</p>
+                        <p><strong>User LastName</strong> : {{consultant.User.LastName}}</p>
+                        <p><strong>User Password</strong> : {{consultant.User.Password}}</p>
+                        <p><strong>User Salary</strong> : {{consultant.User.Salary}}</p>
+                        <p><strong>User Username</strong> : {{consultant.User.Username}}</p>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">User Id</th>
+                <td>{{manager.User.Id}}</td>
+            </tr>
+            <tr>
+                <th scope="row">User Email</th>
+                <td>{{manager.User.Email}}</td>
+            </tr>
+            <tr>
+                <th scope="row">User EntryDate</th>
+                <td>{{manager.User.EntryDate}}</td>
+            </tr>
+            <tr>
+                <th scope="row">User FirstName</th>
+                <td>{{manager.User.FirstName}}</td>
+            </tr>
+            <tr>
+                <th scope="row">User LastName</th>
+                <td>{{manager.User.LastName}}</td>
+            </tr>
+            <tr>
+                <th scope="row">User Password</th>
+                <td>{{manager.User.Password}}</td>
+            </tr>
+            <tr>
+                <th scope="row">User Salary</th>
+                <td>{{manager.User.Salary}}</td>
+            </tr>
+            <tr>
+                <th scope="row">User Username</th>
+                <td>{{manager.User.Username}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

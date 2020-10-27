@@ -1,7 +1,48 @@
-﻿
+﻿@Scripts.Render("~/bundles/angularManager")
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Managers";
 }
 
-<h2>Index</h2>
-
+<h2>Managers</h2>
+<div class="mb-4">
+    <a href="@Url.Action("Create","ManagerView")" class="btn btn-sm btn-outline-primary">Create new Manager</a>
+</div>
+<div ng-controller="managerListController" id="managersList">
+    <table class="table table-bordered">
+        <thead class="text-center">
+            <tr>
+                <th rowspan=2 class="align-middle">Id</th>
+                <th rowspan=2 class="align-middle">File</th>
+                <th colspan=8>User</th>
+                <th rowspan=2 class="align-middle">Detail</th>
+                <th rowspan=2 class="align-middle">Edit</th>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>EntryDate</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Password</th>
+                <th>Salary</th>
+                <th>Username</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in managers">
+                <td>{{item.Id}}</td>
+                <td>{{item.SkillsFile}}</td>
+                <td>{{item.User.Id}}</td>
+                <td>{{item.User.Email}}</td>
+                <td>{{item.User.EntryDate}}</td>
+                <td>{{item.User.FirstName}}</td>
+                <td>{{item.User.LastName}}</td>
+                <td>{{item.User.Password}}</td>
+                <td>{{item.User.Salary}}</td>
+                <td>{{item.User.Username}}</td>
+                <td class="text-center"><a href="@Url.Action("Details","ManagerView")?id={{item.Id}}"><i class="fa fa-eye"></i></a></td>
+                <td class="text-center"><a href="@Url.Action("Edit","ManagerView")?id={{item.Id}}"><i class="fa fa-edit"></i></a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

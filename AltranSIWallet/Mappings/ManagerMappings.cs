@@ -12,10 +12,18 @@ namespace AltranSIWallet.Mappings
         public static ManagerReturnDto ManagerToManagerReturnDto(this Manager manager)
         {
             if(manager != null){
+                List<ConsultantReturnDto> consultantReturnDtoList = new List<ConsultantReturnDto>();
+                if(manager.Consultants.Count() > 0)
+                {
+                    foreach(Consultant consultant in manager.Consultants)
+                    {
+                        consultantReturnDtoList.Add(consultant.ConsultantToConsultantReturnDto());
+                    }
+                }
                 return new ManagerReturnDto
                 {
                     Id = manager.Id,
-                    Consultants = manager.Consultants,
+                    Consultants = consultantReturnDtoList,
                     User = manager.User
                 };
             }

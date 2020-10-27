@@ -1,17 +1,16 @@
-﻿@Scripts.Render("~/bundles/enums")
-@Scripts.Render("~/bundles/angularConsultant")
+﻿@Scripts.Render("~/bundles/angularManager")
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit Manager";
 }
-<div ng-controller="consultantCreateController">
+<h2>Edit Manager</h2>
+<div ng-controller="managerEditController">
     <div id="loadingDiv" ng-if="isloading">
         <span class="spinner"><i class="fa fa-spinner fa-spin fa-5x"></i></span>
     </div>
-    <h2>Create</h2>
     <div class="mb-4 text-right">
         <button class="btn btn-secondary btn-sm" ng-click="resetForm()">Reset form</button>
     </div>
-    <form name="form" novalidate ng-submit="save(form)">
+    @*<form name="form" novalidate ng-if="consultant" ng-submit="save(form)">
         <div class="row">
             <div class="form-group col">
                 <label>Niveau *</label>
@@ -38,47 +37,46 @@
         <div class="row">
             <div class="form-group col">
                 <label>User FirstName *</label>
-                <input type="text" class="form-control" ng-model="formObj.UserAddDto.FirstName" name="FirstName" required="">
+                <input type="text" class="form-control" ng-model="formObj.User.FirstName" name="FirstName" required="">
                 <div ng-show="(form.$submitted || form.FirstName.$touched) && form.FirstName.$error.required" class="bg-danger text-white p-1 mt-1">{{requiredMess}}</div>
             </div>
             <div class="form-group col">
                 <label>User LastName *</label>
-                <input type="text" class="form-control" ng-model="formObj.UserAddDto.LastName" name="LastName" required="">
+                <input type="text" class="form-control" ng-model="formObj.User.LastName" name="LastName" required="">
                 <div ng-show="(form.$submitted || form.LastName.$touched) && form.LastName.$error.required" class="bg-danger text-white p-1 mt-1">{{requiredMess}}</div>
             </div>
         </div>
         <div class="row">
             <div class="form-group col">
                 <label>User Username *</label>
-                <input type="text" class="form-control" ng-model="formObj.UserAddDto.Username" name="Username" required="">
+                <input type="text" class="form-control" ng-model="formObj.User.Username" name="Username" required="">
                 <div ng-show="(form.$submitted || form.Username.$touched) && form.Username.$error.required" class="bg-danger text-white p-1 mt-1">{{requiredMess}}</div>
             </div>
             <div class="form-group col">
-                <label>User Email *</label>
-                <input type="text" class="form-control" ng-model="formObj.UserAddDto.Email" name="Email" required="">
+                <label>User Email</label>
+                <input type="text" class="form-control" ng-model="formObj.User.Email" name="Email" required="">
                 <div ng-show="(form.$submitted || form.Email.$touched) && form.Email.$error.required" class="bg-danger text-white p-1 mt-1">{{requiredMess}}</div>
             </div>
         </div>
         <div class="row">
             <div class="form-group col">
-                <label>User Password *</label>
-                <input type="text" class="form-control" ng-model="formObj.UserAddDto.Password" name="Password" required ng-minlength="6">
+                <label>User Password</label>
+                <input type="text" class="form-control" ng-model="formObj.User.Password" name="Password" required="">
                 <div ng-show="(form.$submitted || form.Password.$touched) && form.Password.$error.required" class="bg-danger text-white p-1 mt-1">{{requiredMess}}</div>
-                <div ng-show="(form.$submitted || form.Password.$touched) && form.Password.$error.minlength" class="bg-danger text-white p-1 mt-1">6 characters minimum</div>
             </div>
             <div class="form-group col">
                 <label>User Salary</label>
-                <input type="text" class="form-control" ng-model="formObj.UserAddDto.Salary" name="Salary" required="">
+                <input type="text" class="form-control" ng-model="formObj.User.Salary" name="Salary" required="">
             </div>
         </div>
         <div class="row">
             <div class="form-group col-6">
                 <label>User EntryDate</label>
-                <input type="date" class="form-control" ng-model="formObj.UserAddDto.EntryDate">
+                <input type="date" class="form-control" ng-model="formObj.User.EntryDate">
             </div>
         </div>
         <div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
-    </form>
+    </form>*@
 </div>

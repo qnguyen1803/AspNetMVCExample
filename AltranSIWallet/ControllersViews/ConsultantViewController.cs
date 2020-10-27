@@ -26,21 +26,6 @@ namespace AltranSIWallet.ControllersViews
             return View();
         }
 
-        // POST: ConsultantView/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
         // GET: ConsultantView/Edit/5
         public ActionResult Edit(int id)
         {

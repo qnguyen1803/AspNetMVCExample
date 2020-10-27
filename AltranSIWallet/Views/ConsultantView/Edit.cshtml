@@ -1,47 +1,84 @@
 ﻿@Scripts.Render("~/bundles/enums")
 @Scripts.Render("~/bundles/angularConsultant")
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit Consultant";
 }
+<h2>Edit Consultant</h2>
 <div ng-controller="consultantEditController">
-    <div id="loadingDiv" ng-show="isloading">
+    <div id="loadingDiv" ng-if="isloading">
         <span class="spinner"><i class="fa fa-spinner fa-spin fa-5x"></i></span>
     </div>
-
     <h2>Edit</h2>
+    <div class="mb-4 text-right">
+        <button class="btn btn-secondary btn-sm" ng-click="resetForm()">Reset form</button>
+    </div>
+    <form name="form" novalidate ng-if="consultant" ng-submit="save(form)">
+        <div class="row">
+            <div class="form-group col">
+                <label>Niveau *</label>
+                <select class="form-control" ng-options="item.id as item.label for item in ELevels" ng-model="formObj.Level" name="Level" required=""></select>
+                <div ng-show="(form.$submitted || form.Level.$touched) && form.Level.$error.required" class="bg-danger text-white p-1 mt-1">{{requiredMess}}</div>
+            </div>
+            <div class="form-group col">
+                <label>SkillsFile</label>
+                <input type="text" class="form-control" ng-model="formObj.SkillsFile">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col">
+                <label>Project ID</label>
+                <input type="text" class="form-control" ng-model="formObj.ProjectId">
+            </div>
+            <div class="form-group col">
+                <label>Manager ID</label>
+                <select class="form-control" ng-options="item.Id as item.User.Username for item in managers" ng-model="formObj.ManagerId"></select>
+            </div>
+        </div>
 
-    {
-    "Id": 0,
-    "Level": 0,
-    "SkillsFile": "string",
-    "ProjectId": 0,
-    "ManagerId": 0,
-    "User": {
-    "Id": 0,
-    "FirstName": "string",
-    "LastName": "string",
-    "Username": "string",
-    "Email": "string",
-    "Password": "string",
-    "Salary": 0,
-    "EntryDate": "2020-10-19T10:46:07.419Z"
-    }
-    <form novalidate>
-        <div class="form-group">
-            <label>Niveau</label>
-            <select ng-options="item.id as item.label for item in ELevels" ng-model="level"></select>
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <hr />
+        <div class="row">
+            <div class="form-group col">
+                <label>User FirstName *</label>
+                <input type="text" class="form-control" ng-model="formObj.User.FirstName" name="FirstName" required="">
+                <div ng-show="(form.$submitted || form.FirstName.$touched) && form.FirstName.$error.required" class="bg-danger text-white p-1 mt-1">{{requiredMess}}</div>
+            </div>
+            <div class="form-group col">
+                <label>User LastName *</label>
+                <input type="text" class="form-control" ng-model="formObj.User.LastName" name="LastName" required="">
+                <div ng-show="(form.$submitted || form.LastName.$touched) && form.LastName.$error.required" class="bg-danger text-white p-1 mt-1">{{requiredMess}}</div>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        <div class="row">
+            <div class="form-group col">
+                <label>User Username *</label>
+                <input type="text" class="form-control" ng-model="formObj.User.Username" name="Username" required="">
+                <div ng-show="(form.$submitted || form.Username.$touched) && form.Username.$error.required" class="bg-danger text-white p-1 mt-1">{{requiredMess}}</div>
+            </div>
+            <div class="form-group col">
+                <label>User Email</label>
+                <input type="text" class="form-control" ng-model="formObj.User.Email" name="Email" required="">
+                <div ng-show="(form.$submitted || form.Email.$touched) && form.Email.$error.required" class="bg-danger text-white p-1 mt-1">{{requiredMess}}</div>
+            </div>
         </div>
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        <div class="row">
+            <div class="form-group col">
+                <label>User Password</label>
+                <input type="text" class="form-control" ng-model="formObj.User.Password" name="Password" required="">
+                <div ng-show="(form.$submitted || form.Password.$touched) && form.Password.$error.required" class="bg-danger text-white p-1 mt-1">{{requiredMess}}</div>
+            </div>
+            <div class="form-group col">
+                <label>User Salary</label>
+                <input type="text" class="form-control" ng-model="formObj.User.Salary" name="Salary" required="">
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="row">
+            <div class="form-group col-6">
+                <label>User EntryDate</label>
+                <input type="date" class="form-control" ng-model="formObj.User.EntryDate">
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
     </form>
-
-
 </div>

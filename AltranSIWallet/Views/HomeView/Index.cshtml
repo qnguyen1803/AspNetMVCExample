@@ -10,6 +10,9 @@
 
 <h3><a href="#consultantsList" data-toggle="collapse" class="title-toogle">Liste des consultants</a></h3>
 <div ng-controller="consultantListController" id="consultantsList" class="collapse">
+    <div class="mb-3 mt-3">
+        <a href="@Url.Action("Create","ConsultantView")" class="btn btn-sm btn-outline-primary">Create new Consultant</a>
+    </div>
     <table class="table table-bordered">
         <thead class="text-center">
             <tr>
@@ -20,6 +23,7 @@
                 <th rowspan=2 class="align-middle">File</th>
                 <th colspan=8>User</th>
                 <th rowspan=2 class="align-middle">Detail</th>
+                <th rowspan=2 class="align-middle">Edit</th>
             </tr>
             <tr>
                 <th>Id</th>
@@ -58,6 +62,7 @@
                 <td>{{item.User.Salary}}</td>
                 <td>{{item.User.Username}}</td>
                 <td class="text-center"><a href="@Url.Action("Details","ConsultantView")?id={{item.Id}}"><i class="fa fa-eye"></i></a></td>
+                <td class="text-center"><a href="@Url.Action("Edit","ConsultantView")?id={{item.Id}}"><i class="fa fa-edit"></i></a></td>
             </tr>
         </tbody>
     </table>
@@ -65,6 +70,9 @@
 
 <h3><a href="#managersList" data-toggle="collapse" class="title-toogle">Liste des Managers</a></h3>
 <div ng-controller="managerListController" id="managersList" class="collapse">
+    <div class="mb-3 mt-3">
+        <a href="@Url.Action("Create","ManagerView")" class="btn btn-sm btn-outline-primary">Create new Manager</a>
+    </div>
     <table class="table table-bordered">
         <thead class="text-center">
             <tr>
@@ -72,6 +80,7 @@
                 <th rowspan=2 class="align-middle">File</th>
                 <th colspan=8>User</th>
                 <th rowspan=2 class="align-middle">Detail</th>
+                <th rowspan=2 class="align-middle">Edit</th>
             </tr>
             <tr>
                 <th>Id</th>
@@ -96,7 +105,8 @@
                 <td>{{item.User.Password}}</td>
                 <td>{{item.User.Salary}}</td>
                 <td>{{item.User.Username}}</td>
-                <td class="text-center"><a href="@Url.Action("Details","ConsultantView")?id={{item.Id}}"><i class="fa fa-eye"></i></a></td>
+                <td class="text-center"><a href="@Url.Action("Details","ManagerView")?id={{item.Id}}"><i class="fa fa-eye"></i></a></td>
+                <td class="text-center"><a href="@Url.Action("Edit","ManagerView")?id={{item.Id}}"><i class="fa fa-edit"></i></a></td>
             </tr>
         </tbody>
     </table>
