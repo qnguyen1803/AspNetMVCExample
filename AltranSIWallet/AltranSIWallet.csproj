@@ -238,9 +238,11 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelsDto\Consultant\ConsultantAddDto.cs" />
     <Compile Include="ModelsDto\Consultant\ConsultantReturnDto.cs" />
+    <Compile Include="ModelsDto\Consultant\ConsultantReturnWithoutManagerDto.cs" />
     <Compile Include="ModelsDto\Consultant\ConsultantUpdateDto.cs" />
     <Compile Include="ModelsDto\Manager\ManagerAddDto.cs" />
     <Compile Include="ModelsDto\Manager\ManagerReturnDto.cs" />
+    <Compile Include="ModelsDto\Manager\ManagerUpdateDto.cs" />
     <Compile Include="ModelsDto\User\UserAddDto.cs" />
     <Compile Include="Models\AltranSIWalletContext.cs" />
     <Compile Include="Models\Profil\Consultant.cs" />

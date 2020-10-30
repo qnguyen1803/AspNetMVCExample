@@ -1,5 +1,6 @@
 ﻿using AltranSIWallet.Models;
 using AltranSIWallet.ModelsDto;
+using AltranSIWallet.ModelsDto.Consultant;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +10,16 @@ namespace AltranSIWallet.Mappings
 {
     public static partial class Mappings
     {
+        #region ToDto
         public static ManagerReturnDto ManagerToManagerReturnDto(this Manager manager)
         {
             if(manager != null){
-                List<ConsultantReturnDto> consultantReturnDtoList = new List<ConsultantReturnDto>();
+                List<ConsultantReturnWithoutManagerDto> consultantReturnDtoList = new List<ConsultantReturnWithoutManagerDto>();
                 if(manager.Consultants.Count() > 0)
                 {
                     foreach(Consultant consultant in manager.Consultants)
                     {
-                        consultantReturnDtoList.Add(consultant.ConsultantToConsultantReturnDto());
+                        consultantReturnDtoList.Add(consultant.ConsultantToConsultantReturnWithoutManagerDto());
                     }
                 }
                 return new ManagerReturnDto
@@ -29,10 +31,13 @@ namespace AltranSIWallet.Mappings
             }
             return null;
         }
+        #endregion
 
+        #region ToDomain
         public static Manager ManagerAddDtoToManager(this ManagerAddDto managerAddDto)
         {
-            if(managerAddDto != null){
+            if (managerAddDto != null)
+            {
                 return new Manager
                 {
                     Id = 0,
@@ -43,5 +48,12 @@ namespace AltranSIWallet.Mappings
             }
             return null;
         }
+
+        //public static Manager ManagerUpdateDtoToManager(this ManagerUpdateDto managerUpdateDto)
+        //{
+
+        //}
+        #endregion
+
     }
 }

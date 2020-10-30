@@ -19,12 +19,14 @@ namespace AltranSIWallet.Controllers
         private AltranSIWalletContext db;
         private readonly ManagerRepository managerRepository;
         private readonly UserRepository userRepository;
+        private readonly ConsultantRepository consultantRepository;
 
         public ManagersController()
         {
             db = new AltranSIWalletContext();
             managerRepository = new ManagerRepository(db);
             userRepository = new UserRepository(db);
+            consultantRepository = new ConsultantRepository(db);
     }
         /// <summary>
         /// Get All Managers
@@ -63,7 +65,6 @@ namespace AltranSIWallet.Controllers
                 return BadRequest();
             if (managerAddDto.UserAddDto == null)
                 return BadRequest("User can not be null");
-           userRepository.Create(managerAddDto.UserAddDto.UserAddDtoToUser());
            managerRepository.Create(managerAddDto.ManagerAddDtoToManager());
            await db.SaveChangesAsync();
            return Ok();
@@ -75,26 +76,25 @@ namespace AltranSIWallet.Controllers
         /// <param name="manager"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IHttpActionResult> Update([FromBody]Manager manager)
+        public async Task<IHttpActionResult> Update([FromBody]ManagerUpdateDto managerUpdateDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
+            User userToUpdate = await userRepository.FindByCondition(item => item.Id == managerUpdateDto.User.Id).FirstOrDefaultAsync();
+            if (userToUpdate == null)
+                return Content(HttpStatusCode.NotFound, "User not found");
+            userRepository.Update(managerUpdateDto.User);
 
-            managerRepository.Update(manager);
-            userRepository.Update(manager.User);
+            //foreach (int item in managerUpdateDto.ConsultantsId)
+            //{
+            //    Consultant consultantToUpdate = await consultantRepository.FindByCondition(x => x.Id == item).FirstOrDefaultAsync();
+            //    if (consultantToUpdate == null)
+            //        return Content(HttpStatusCode.NotFound, "Consultant not found");
+            //    consultantToUpdate.ManagerId = managerUpdateDto.Id;
+            //    consultantRepository.Update(consultantToUpdate);
+            //}
 
-            try {
-                await db.SaveChangesAsync();
-            } catch (DbUpdateConcurrencyException) {
-                Manager managerToUpdate = await managerRepository.FindByCondition(item => item.Id == manager.Id).FirstOrDefaultAsync();
-                if (managerToUpdate == null)
-                    return Content(HttpStatusCode.NotFound, "Manager not found");
-                User userToUpdate = await userRepository.FindByCondition(item => item.Id == manager.User.Id).FirstOrDefaultAsync();
-                if (userToUpdate == null)
-                    return Content(HttpStatusCode.NotFound, "User not found");
-                throw;
-            }
-  
+            await db.SaveChangesAsync();
             return Ok();
         }
 

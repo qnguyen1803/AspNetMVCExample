@@ -141,18 +141,15 @@ app.controller('consultantEditController', ($scope, $http, $location, $q) => {
                 ([res1, res2]) => {
                     $scope.consultant = res1.data;
                     $scope.managers = res2.data;
-                    $scope.formObj.Level = $scope.consultant.Level.Value;
-                    $scope.formObj.SkillsFile = $scope.consultant.SkillsFile;
-                    $scope.formObj.ProjectId = $scope.consultant.Project ? $scope.consultant.Project.Id : null;
-                    $scope.formObj.ManagerId = $scope.consultant.Manager ? $scope.consultant.Manager.Id : null;
-                    $scope.formObj.User.Id = $scope.consultant.User.Id;
-                    $scope.formObj.User.FirstName = $scope.consultant.User.FirstName;
-                    $scope.formObj.User.LastName = $scope.consultant.User.LastName;
-                    $scope.formObj.User.Username = $scope.consultant.User.Username;
-                    $scope.formObj.User.Email = $scope.consultant.User.Email;
-                    $scope.formObj.User.Password = $scope.consultant.User.Password;
-                    $scope.formObj.User.Salary = $scope.consultant.User.Salary;
-                    $scope.formObj.User.EntryDate = new Date($scope.consultant.User.EntryDate);
+                    $scope.consultant.User.EntryDate = new Date($scope.consultant.User.EntryDate);
+                    $scope.formObj = {
+                        Id: id,
+                        Level: $scope.consultant.Level.Value,
+                        SkillsFile: $scope.consultant.SkillsFile,
+                        ProjectId: $scope.consultant.Project ? $scope.consultant.Project.Id : null,
+                        ManagerId: $scope.consultant.Manager ? $scope.consultant.Manager.Id : null,
+                        User: $scope.consultant.User
+                    };
                 }, (response) => {
                     toastr.error("Une erreur s'est produite !");
                     throw new Error(response.data);

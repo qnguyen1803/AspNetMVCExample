@@ -13,6 +13,7 @@ namespace AltranSIWallet
                           "~/Content/font-awesome.css",
                           "~/Content/toastr.min.css",
                           "~/Content/site.css"));
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
             // Use the development version of Modernizr to develop with and learn from. Then, when you're

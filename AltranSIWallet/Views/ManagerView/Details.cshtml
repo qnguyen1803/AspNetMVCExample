@@ -8,7 +8,13 @@
     <div id="loadingDiv" ng-show="isloading">
         <span class="spinner"><i class="fa fa-spinner fa-spin fa-5x"></i></span>
     </div>
-    <div class="text-right mb-2"><button class="btn btn-danger btn-sm" ng-click="remove()">Supprimer</button></div>
+    <div class="d-flex justify-content-between mb-2">
+        <div>
+            <a href="@Url.Action("Edit","ManagerView")?id={{manager.Id}}" class="btn btn-outline-info btn-sm">Edit</a>
+            <a href="@Url.Action("Create","ManagerView")" class="btn btn-outline-info btn-sm">Create new Manager</a>
+        </div>
+        <div><button class="btn btn-danger btn-sm" ng-click="remove()">Supprimer</button></div>
+    </div>
     <table class="table table-bordered">
         <tbody>
             <tr>
@@ -19,17 +25,24 @@
                 <th scope="row">Consultant</th>
                 <td>
                     <div ng-repeat="consultant in manager.Consultants" class="border-bottom pb-2">
-                        <p><strong>Id</strong> : {{consultant.Id}}</p>
-                        <p><strong>SkillsFile</strong> : {{consultant.SkillsFile}}</p>
-                        <p><strong>Level</strong> : {{consultant.Level.Description}}</p>
-                        <p><strong>User Id</strong> : {{consultant.User.Id}} </p>
-                        <p><strong>User Email</strong> : {{consultant.User.Email}}</p>
-                        <p><strong>User EntryDate</strong> : {{consultant.User.EntryDate}}</p>
-                        <p><strong>User FirstName</strong> : {{consultant.User.FirstName}}</p>
-                        <p><strong>User LastName</strong> : {{consultant.User.LastName}}</p>
-                        <p><strong>User Password</strong> : {{consultant.User.Password}}</p>
-                        <p><strong>User Salary</strong> : {{consultant.User.Salary}}</p>
-                        <p><strong>User Username</strong> : {{consultant.User.Username}}</p>
+                        <div class="row">
+                            <p class="col"><strong>SkillsFile</strong> : {{consultant.SkillsFile}}</p>
+                            <p class="col"><strong>Level</strong> : {{consultant.Level.Description}}</p>
+                            <p class="col"><strong>User Id</strong> : {{consultant.User.Id}} </p>
+                        </div>
+                        <div class="row">
+                            <p class="col"><strong>User Email</strong> : {{consultant.User.Email}}</p>
+                            <p class="col"><strong>User EntryDate</strong> : {{consultant.User.EntryDate}}</p>
+                            <p class="col"><strong>User FirstName</strong> : {{consultant.User.FirstName}}</p>
+                        </div>                        
+                        <div class="row">
+                            <p class="col"><strong>User LastName</strong> : {{consultant.User.LastName}}</p>
+                            <p class="col"><strong>User Password</strong> : {{consultant.User.Password}}</p>
+                            <p class="col"><strong>User Salary</strong> : {{consultant.User.Salary}}</p>
+                        </div>
+                        <div class="row">
+                            <p class="col"><strong>User Username</strong> : {{consultant.User.Username}}</p>
+                        </div>
                     </div>
                 </td>
             </tr>

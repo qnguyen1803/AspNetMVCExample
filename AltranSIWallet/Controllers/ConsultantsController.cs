@@ -76,7 +76,6 @@ namespace AltranSIWallet.Controllers
                 return BadRequest(ModelState);
             if (consultantAddDto.UserAddDto == null)
                 return BadRequest("User can not be null");
-            userRepository.Create(consultantAddDto.UserAddDto.UserAddDtoToUser());
             consultantRepository.Create(consultantAddDto.ConsultantAddDtoToConsultant());
             await db.SaveChangesAsync();
             return Ok();

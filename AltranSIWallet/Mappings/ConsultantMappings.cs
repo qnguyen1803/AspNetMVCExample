@@ -1,5 +1,6 @@
 ﻿using AltranSIWallet.Models;
 using AltranSIWallet.ModelsDto;
+using AltranSIWallet.ModelsDto.Consultant;
 using AltranSIWallet.Shared.Enum;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,26 @@ namespace AltranSIWallet.Mappings
                     User = consultant.User,
                     Project = consultant.Project,
                     Manager = consultant.Manager
+                };
+            }
+            return null;
+        }
+
+        public static ConsultantReturnWithoutManagerDto ConsultantToConsultantReturnWithoutManagerDto(this Consultant consultant)
+        {
+            if (consultant != null)
+            {
+                return new ConsultantReturnWithoutManagerDto
+                {
+                    Id = consultant.Id,
+                    Level = new EnumModel
+                    {
+                        Value = (int)consultant.Level,
+                        Description = EnumHelper.GetDescription(consultant.Level)
+                    },
+                    SkillsFile = consultant.SkillsFile,
+                    User = consultant.User,
+                    Project = consultant.Project
                 };
             }
             return null;

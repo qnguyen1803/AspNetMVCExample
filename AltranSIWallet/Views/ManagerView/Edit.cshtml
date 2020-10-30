@@ -3,37 +3,21 @@
     ViewBag.Title = "Edit Manager";
 }
 <h2>Edit Manager</h2>
-<div ng-controller="managerEditController">
+<div ng-controller="managerEditController" ngIf="manager">
     <div id="loadingDiv" ng-if="isloading">
         <span class="spinner"><i class="fa fa-spinner fa-spin fa-5x"></i></span>
     </div>
     <div class="mb-4 text-right">
         <button class="btn btn-secondary btn-sm" ng-click="resetForm()">Reset form</button>
     </div>
-    @*<form name="form" novalidate ng-if="consultant" ng-submit="save(form)">
+    <form name="form" novalidate ng-submit="save(form)">
         <div class="row">
             <div class="form-group col">
-                <label>Niveau *</label>
-                <select class="form-control" ng-options="item.id as item.label for item in ELevels" ng-model="formObj.Level" name="Level" required=""></select>
-                <div ng-show="(form.$submitted || form.Level.$touched) && form.Level.$error.required" class="bg-danger text-white p-1 mt-1">{{requiredMess}}</div>
-            </div>
-            <div class="form-group col">
-                <label>SkillsFile</label>
-                <input type="text" class="form-control" ng-model="formObj.SkillsFile">
+                <label>Consultants *</label>
+                <select class="form-control"  multiple ng-model="formObj.ConsultantsId" ng-options="item.Id as item.User.Username for item in consultants"></select>
+                {{formObj.ConsultantsId}}
             </div>
         </div>
-        <div class="row">
-            <div class="form-group col">
-                <label>Project ID</label>
-                <input type="text" class="form-control" ng-model="formObj.ProjectId">
-            </div>
-            <div class="form-group col">
-                <label>Manager ID</label>
-                <select class="form-control" ng-options="item.Id as item.User.Username for item in managers" ng-model="formObj.ManagerId"></select>
-            </div>
-        </div>
-
-        <hr />
         <div class="row">
             <div class="form-group col">
                 <label>User FirstName *</label>
@@ -53,14 +37,14 @@
                 <div ng-show="(form.$submitted || form.Username.$touched) && form.Username.$error.required" class="bg-danger text-white p-1 mt-1">{{requiredMess}}</div>
             </div>
             <div class="form-group col">
-                <label>User Email</label>
+                <label>User Email *</label>
                 <input type="text" class="form-control" ng-model="formObj.User.Email" name="Email" required="">
                 <div ng-show="(form.$submitted || form.Email.$touched) && form.Email.$error.required" class="bg-danger text-white p-1 mt-1">{{requiredMess}}</div>
             </div>
         </div>
         <div class="row">
             <div class="form-group col">
-                <label>User Password</label>
+                <label>User Password *</label>
                 <input type="text" class="form-control" ng-model="formObj.User.Password" name="Password" required="">
                 <div ng-show="(form.$submitted || form.Password.$touched) && form.Password.$error.required" class="bg-danger text-white p-1 mt-1">{{requiredMess}}</div>
             </div>
@@ -78,5 +62,6 @@
         <div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
-    </form>*@
+    </form>
 </div>
+
